@@ -14,5 +14,15 @@
     </head>
     <body>
         <strong> Protected Page!</strong>
+        <br />
+        <form method="post" action="logout"> <fieldset>
+                <br />
+                <input type="submit" value="Logout" class="sansLabel" />
+                <br />
+            </fieldset> </form>
+        
+        
     </body>
 </html>
+
+

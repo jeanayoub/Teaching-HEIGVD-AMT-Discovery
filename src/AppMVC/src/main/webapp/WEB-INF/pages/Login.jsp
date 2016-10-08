@@ -14,21 +14,27 @@
         <title>Login page</title>
     </head>
     <body>
-        <form method="post" action="connexion"> <fieldset>
-                <legend>Connexion</legend>
-                <p>Veuillez vous connecter afin d'acceder a la protected page.</p>
-                <label for="nom">Adresse email <span class="requis">*</span></label>
-                <input type="email" id="email" name="email" value="<c:out value="${utilisateur.email}"/>" size="20"
-                       maxlength="60" />
-                <span class="erreur">${form.erreurs['email']}</span>
+        <form method="post" action="login"> <fieldset>
+                <legend>Login</legend>
+                <p>You need to connect in order to access the protected page.</p>
+                <label for="username">Username <span class="requis">*</span></label>
+                <input type="username" 
+                       name="username" value="<c:out 
+                       value="${utilisateur.email}"/>" size="20"
+                       maxlength="60"/>
                 <br />
-                <label for="motdepasse">Mot de passe <span class="requis">*</span></label>
-                <input type="password" id="motdepasse" name="motdepasse" value="" size="20" maxlength="20" />
-                <span class="erreur">${form.erreurs['motdepasse']}</span>
+                <label for="password">Password <span 
+                       class="requis">*</span></label>
+                <input type="password" 
+                       name="password" 
+                       value="" 
+                       size="20" 
+                       maxlength="20" />
                 <br />
-                <input type="submit" value="Connexion" class="sansLabel" />
+                <input type="submit" 
+                       value="Connect" 
+                       class="sansLabel" />
                 <br />
-                <p class="${empty form.erreurs ? 'succes' : 'erreur'}">${form.resultat}</p>
             </fieldset> </form>
     </body>
 </html>
