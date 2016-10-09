@@ -26,6 +26,7 @@ public class RegistrationServlet extends HttpServlet {
     
     public static final String VIEW_REGISTRATION = "/WEB-INF/pages/Registration.jsp";
     public static final String VIEW_LOGIN        = "/WEB-INF/pages/Login.jsp";
+    public static final String LINK_LOGIN        = "/login";
     public static final String USERNAME          = "username";
     public static final String PASSWORD          = "password";
     public static final String CONFIRMATION      = "confirmation"; 
@@ -82,7 +83,8 @@ public class RegistrationServlet extends HttpServlet {
         else {
             userManager.addUser(new User(username, password));
             request.setAttribute("succ_register", " You have successfully registerd !");
-            request.getRequestDispatcher(VIEW_LOGIN).forward(request, response);
+            //request.getRequestDispatcher(VIEW_LOGIN).forward(request, response);
+            response.sendRedirect( request.getContextPath() + LINK_LOGIN);
         }
     }
 

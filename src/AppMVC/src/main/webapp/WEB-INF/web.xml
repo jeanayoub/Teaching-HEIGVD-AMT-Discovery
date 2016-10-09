@@ -5,6 +5,10 @@
         <servlet-class>ch.heigvd.ch.amt.appmvc.web.LoginServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ProtectedServlet</servlet-name>
+        <servlet-class>ch.heigvd.ch.amt.appmvc.web.ProtectedServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>RegistrationServlet</servlet-name>
         <servlet-class>ch.heigvd.ch.amt.appmvc.web.RegistrationServlet</servlet-class>
     </servlet>
@@ -19,6 +23,10 @@
     <servlet-mapping>
         <servlet-name>RegistrationServlet</servlet-name>
         <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProtectedServlet</servlet-name>
+        <url-pattern>/protected</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>

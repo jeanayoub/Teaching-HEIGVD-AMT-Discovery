@@ -17,7 +17,7 @@
         <strong> Protected Page!</strong>
         <br />
         <font color="blue">Welcome ${requestScope.conn_user.getUsername()} !</font>
-        <form method="post" action="logout"> <fieldset>
+        <form method="post" action="protected"> <fieldset>
                 <br />
                 <input type="submit" value="Logout" class="sansLabel" />
                 <br />
