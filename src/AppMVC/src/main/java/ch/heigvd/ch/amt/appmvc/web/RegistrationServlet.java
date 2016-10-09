@@ -1,12 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/** 
+ * Document           : RegistrationServlet.java
+ * Created on         : Oct 6, 2016
+ * Author             : J. Ayoub & M-H. Aghamahdi
+ * Information Source : N/A
  */
+
 package ch.heigvd.ch.amt.appmvc.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -63,14 +64,25 @@ public class RegistrationServlet extends HttpServlet {
         String password     = request.getParameter(PASSWORD); 
         String confirmation = request.getParameter(CONFIRMATION);
         
-        if (username != null && !userManager.userExists(username) 
-                             && password != null 
-                             && password.equals(confirmation)) {
-            userManager.addUser(new User(username, password));
-            request.getRequestDispatcher(VIEW_LOGIN).forward(request, response);
+        if (username.isEmpty() || password.isEmpty() || confirmation.isEmpty()) {
+            request.setAttribute("err_register", "You must fill all required fields (*) !");
+            request.getRequestDispatcher(VIEW_REGISTRATION).forward(request, response);
         }
+            
+        else if (userManager.userExists(username)) {
+            request.setAttribute("err_register", "Username exists ! Choose a different one !");
+            request.getRequestDispatcher(VIEW_REGISTRATION).forward(request, response);
+        }
+        
+        else if (!password.equals(confirmation)) {
+            request.setAttribute("err_register", "Password and password confirmation doesn't match !");
+            request.getRequestDispatcher(VIEW_REGISTRATION).forward(request, response);
+        }
+        
         else {
-            request.getRequestDispatcher(VIEW_REGISTRATION).include(request, response);
+            userManager.addUser(new User(username, password));
+            request.setAttribute("succ_register", " You have successfully registerd !");
+            request.getRequestDispatcher(VIEW_LOGIN).forward(request, response);
         }
     }
 

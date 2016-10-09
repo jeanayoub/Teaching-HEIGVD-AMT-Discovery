@@ -1,6 +1,6 @@
 <%-- 
-    Document           : ProtectedPage
-    Created on         : Oct 6, 2016, 8:11:41 PM
+    Document           : ProtectedPage.jsp
+    Created on         : Oct 6, 2016
     Author             : J. Ayoub & M-H. Aghamahdi
     Information Source : www.openclassrooms.com
 --%>
@@ -9,12 +9,14 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="style.css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Protected Page</title>
     </head>
     <body>
         <strong> Protected Page!</strong>
         <br />
+        <font color="blue">Welcome ${requestScope.conn_user.getUsername()} !</font>
         <form method="post" action="logout"> <fieldset>
                 <br />
                 <input type="submit" value="Logout" class="sansLabel" />

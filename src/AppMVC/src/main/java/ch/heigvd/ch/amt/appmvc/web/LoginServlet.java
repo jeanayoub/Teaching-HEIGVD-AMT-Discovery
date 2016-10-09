@@ -1,23 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/** 
+ * Document           : LoginServlet.java
+ * Created on         : Oct 6, 2016
+ * Author             : J. Ayoub & M-H. Aghamahdi
+ * Information Source : N/A
  */
+
 package ch.heigvd.ch.amt.appmvc.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 
 import ch.heigvd.ch.amt.appmvc.services.UserManager;
 import ch.heigvd.ch.amt.appmvc.model.User;
-import static ch.heigvd.ch.amt.appmvc.web.RegistrationServlet.PASSWORD;
-import static ch.heigvd.ch.amt.appmvc.web.RegistrationServlet.USERNAME;
+
 /**
  *
  * @author Ayoubo
@@ -71,6 +70,7 @@ public class LoginServlet extends HttpServlet {
             //HttpSession session = request.getSession(true);
             if(counter != null && counter.equals(0) ) {
                 request.getSession().setAttribute("counter", 1);
+                request.setAttribute("conn_user", new User(username, password));
                 request.getRequestDispatcher(VIEW_PROTECTED).forward(request, response);
             }
             else
@@ -78,6 +78,7 @@ public class LoginServlet extends HttpServlet {
         }
         
         else {
+            request.setAttribute("err_login", "Invalid username or/and password !");
             request.getRequestDispatcher(VIEW_LOGIN).include(request, response);
         }
     }
