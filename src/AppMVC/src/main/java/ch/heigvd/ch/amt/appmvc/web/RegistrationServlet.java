@@ -15,10 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import ch.heigvd.ch.amt.appmvc.services.UserManager;
 import ch.heigvd.ch.amt.appmvc.model.User;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Ayoubo
+ * @author J. Ayoub & M-H. Aghamahdi
  */
 public class RegistrationServlet extends HttpServlet {
     
@@ -29,12 +30,9 @@ public class RegistrationServlet extends HttpServlet {
     public static final String LINK_LOGIN        = "/login";
     public static final String USERNAME          = "username";
     public static final String PASSWORD          = "password";
-    public static final String CONFIRMATION      = "confirmation"; 
-    
+    public static final String CONFIRMATION      = "confirmation";
+    public static final String LINK_PROTECTED    = "/restricted/protected";
 
-    
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -46,7 +44,15 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        HttpSession sessionTest = request.getSession();
+        
+        if(sessionTest.getAttribute("username") != null) {
+            response.sendRedirect( request.getContextPath() + LINK_PROTECTED);
+                }
+        else {
         request.getRequestDispatcher(VIEW_REGISTRATION).include(request, response);
+        }
     }
 
     /**
@@ -87,15 +93,4 @@ public class RegistrationServlet extends HttpServlet {
             response.sendRedirect( request.getContextPath() + LINK_LOGIN);
         }
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

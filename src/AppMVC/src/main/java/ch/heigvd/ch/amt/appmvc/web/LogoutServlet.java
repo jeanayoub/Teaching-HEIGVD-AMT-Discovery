@@ -1,12 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/** 
+ * Document           : LogoutServlet.java
+ * Created on         : Oct 10, 2016
+ * Author             : J. Ayoub & M-H. Aghamahdi
+ * Information Source : N/A
  */
+
 package ch.heigvd.ch.amt.appmvc.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Ayoubo
+ * @author J. Ayoub & M-H. Aghamahdi
  */
 public class LogoutServlet extends HttpServlet {
 
@@ -31,6 +32,4 @@ public class LogoutServlet extends HttpServlet {
 
         response.sendRedirect(request.getContextPath() + LINK_LOGIN);
     }
-
-
 }

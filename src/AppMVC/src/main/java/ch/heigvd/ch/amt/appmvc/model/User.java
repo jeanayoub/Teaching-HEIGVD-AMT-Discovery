@@ -9,7 +9,7 @@ package ch.heigvd.ch.amt.appmvc.model;
 
 /**
  *
- * @author Ayoubo
+ * @author J. Ayoub & M-H. Aghamahdi
  */
 public class User {
     
@@ -34,12 +34,11 @@ public class User {
         this.username = username;
     }
     
-    public void setPasswors(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
     
     public boolean isEqual (User user) { 
         return (this.username.equals(user.username) ) && (this.password.equals(user.password) ); 
-    }
-    
+    } 
 }

@@ -6,28 +6,23 @@
  */
 package ch.heigvd.ch.amt.appmvc.web;
 
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Ayoubo
+ * @author J. Ayoub & M-H. Aghamahdi
  */
 public class ProtectedServlet extends HttpServlet {
-
     
-    public static final String VIEW_INDEX = "/index.html";
-    //public static final String VIEW_PROTECTED = "ProtectedPage.jsp";
-    public static final String LINK_LOGOUT = "/logout";
-    public static final String LINK_PROTECTED    = "/protected";
-    public static final String VIEW_PROTECTED    = "/WEB-INF/pages/ProtectedPage.jsp";
+    public static final String VIEW_INDEX     = "/index.html";
+    public static final String LINK_LOGOUT    = "/logout";
+    public static final String LINK_PROTECTED = "/protected";
+    public static final String VIEW_PROTECTED = "/WEB-INF/pages/Restricted/ProtectedPage.jsp";
     
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -40,8 +35,7 @@ public class ProtectedServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
                
-        request.getRequestDispatcher(VIEW_PROTECTED).forward(request, response); 
-               
+        request.getRequestDispatcher(VIEW_PROTECTED).forward(request, response);    
     }
 
     /**
@@ -58,15 +52,4 @@ public class ProtectedServlet extends HttpServlet {
              
         response.sendRedirect( request.getContextPath() + LINK_LOGOUT);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

@@ -40,6 +40,7 @@
                 &nbsp; 
                 &nbsp;
                 <font color="red"> <strong> ${requestScope.err_login} <strong> </font>
+                <font color="red"> <strong> ${requestScope.err_restricted} <strong> </font>
                 <br />
                 <a style = "font-size:x-small" href = "index.html"> Home Page</a>
                 <br />

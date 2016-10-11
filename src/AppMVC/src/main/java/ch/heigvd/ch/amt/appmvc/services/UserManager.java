@@ -6,13 +6,14 @@
  */
 
 package ch.heigvd.ch.amt.appmvc.services;
+
 import ch.heigvd.ch.amt.appmvc.model.User;
 import java.util.Map;
 import java.util.HashMap;
 
 /**
  *
- * @author Ayoubo
+ * @author J. Ayoub & M-H. Aghamahdi
  */
 public class UserManager {
 
