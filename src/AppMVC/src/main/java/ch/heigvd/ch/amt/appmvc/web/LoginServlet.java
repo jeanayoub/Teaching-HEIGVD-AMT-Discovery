@@ -12,8 +12,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import ch.heigvd.ch.amt.appmvc.services.UserManager;
+import ch.heigvd.ch.amt.appmvc.services.IUserManager;
 import ch.heigvd.ch.amt.appmvc.model.User;
+import javax.ejb.EJB;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -22,7 +23,8 @@ import javax.servlet.http.HttpSession;
  */
 public class LoginServlet extends HttpServlet {
 
-    UserManager userManager = new UserManager();
+    @EJB
+    private IUserManager userManager;
     
     public static final String VIEW_REGISTRATION = "/WEB-INF/pages/Registration.jsp";
     public static final String VIEW_LOGIN        = "/WEB-INF/pages/Login.jsp";
