@@ -7,6 +7,7 @@
 package ch.heigvd.ch.amt.appmvc.services;
 
 import ch.heigvd.ch.amt.appmvc.model.User;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -16,9 +17,12 @@ import javax.ejb.Local;
 @Local
 public interface IUserManager {
     
-    void    addUser    (User   user);
-    void    deleteUser (User   user);
-    void    modifyUser (User   user);
-    boolean userExists (String username);
-    boolean verifyUser (User   user);  
+    void       addUser      (User   user);
+    User       deleteUser   (String   username);
+    void       modifyUser   (User   user);
+    boolean    userExists   (String username);
+    boolean    verifyUser   (User   user);
+    List<User> findAllUsers ();
+    User       findUser     (String username);
+    
 }

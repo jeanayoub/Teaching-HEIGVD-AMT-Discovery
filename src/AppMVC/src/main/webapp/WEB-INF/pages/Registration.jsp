@@ -26,8 +26,20 @@
             <input type="password" name="password" required="true" size="20" maxlength="20" />
             
             <br/>
-            <label for="confirmation">Confirm password <span class="requis">*</span></label>
+            <label for="confirmation"> Confirm password <span class="requis">*</span></label>
             <input type="password" name="confirmation" required="true" size="20" maxlength="20" />
+            
+             <br/>
+            <label for="email"> email address <span class="requis"></span></label>
+            <input type="text" name="email" required="false" size="20" maxlength="20" />
+            
+             <br/>
+            <label for="firstName"> First name<span class="requis"></span></label>
+            <input type="text" name="firstName" required="false" size="20" maxlength="20" />
+            
+            <br/>
+            <label for="familyName"> Family name<span class="requis"></span></label>
+            <input type="text" name="familyName" required="false" size="20" maxlength="20" />
             
             <br/>
             <br/>

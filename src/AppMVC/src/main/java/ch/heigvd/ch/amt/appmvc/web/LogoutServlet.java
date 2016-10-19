@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  */
 public class LogoutServlet extends HttpServlet {
 
-    public static final String LINK_LOGIN = "/login";
+    private static final String LINK_LOGIN = "/login";
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

@@ -25,10 +25,7 @@ public class RestrictionFilter implements Filter {
     
     public static final String LINK_LOGIN = "/login";
     
-    public RestrictionFilter() {
-    }    
-    
-
+    public RestrictionFilter() {}    
     
 
     /**
@@ -56,8 +53,7 @@ public class RestrictionFilter implements Filter {
             chain.doFilter( request, response ); 
         }
 }
-
-   
+    
 
     /**
      * Destroy method for this filter

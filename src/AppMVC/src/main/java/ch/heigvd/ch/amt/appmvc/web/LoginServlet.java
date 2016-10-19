@@ -26,13 +26,14 @@ public class LoginServlet extends HttpServlet {
     @EJB
     private IUserManager userManager;
     
-    public static final String VIEW_REGISTRATION = "/WEB-INF/pages/Registration.jsp";
-    public static final String VIEW_LOGIN        = "/WEB-INF/pages/Login.jsp";
-    public static final String VIEW_PROTECTED    = "/WEB-INF/pages/Restricted/ProtectedPage.jsp";
-    public static final String USERNAME          = "username";
-    public static final String PASSWORD          = "password";
-    public static final String LINK_PROTECTED    = "/restricted/protected";
-    
+    private static final String VIEW_LOGIN     = "/WEB-INF/pages/Login.jsp";
+    private static final String LINK_PROTECTED = "/restricted/protected";
+    private static final String USERNAME       = "username";
+    private static final String PASSWORD       = "password";
+    public static final  String EMAIL          = "email";
+    public static final  String FIRST_NAME     = "firstName";
+    public static final  String FAMILY_NAME    = "familyName";
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -68,14 +69,20 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String username = request.getParameter(USERNAME);
-        String password = request.getParameter(PASSWORD); 
+        String username   = request.getParameter(USERNAME);
+        String password   = request.getParameter(PASSWORD); 
+        String email      = request.getParameter(EMAIL);
+        String firstName  = request.getParameter(FIRST_NAME);
+        String familyName = request.getParameter(FAMILY_NAME);
         
         
         if (userManager.verifyUser(new User(username, password))) {
                 HttpSession session = request.getSession(true);
             
-                session.setAttribute("username", username);
+                session.setAttribute("username",   username);
+                session.setAttribute("email",      email);
+                session.setAttribute("firstName",  firstName);
+                session.setAttribute("familyName", familyName);
                 response.sendRedirect( request.getContextPath() + LINK_PROTECTED);
         } 
         else {  

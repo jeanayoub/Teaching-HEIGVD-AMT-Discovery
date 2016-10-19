@@ -18,10 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ProtectedServlet extends HttpServlet {
     
-    public static final String VIEW_INDEX     = "/index.html";
-    public static final String LINK_LOGOUT    = "/logout";
-    public static final String LINK_PROTECTED = "/protected";
-    public static final String VIEW_PROTECTED = "/WEB-INF/pages/Restricted/ProtectedPage.jsp";
+    private static final String LINK_LOGOUT    = "/logout";
+    private static final String VIEW_PROTECTED = "/WEB-INF/pages/Restricted/ProtectedPage.jsp";
     
     /**
      * Handles the HTTP <code>GET</code> method.

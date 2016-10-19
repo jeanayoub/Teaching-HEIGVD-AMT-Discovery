@@ -8,8 +8,10 @@
 package ch.heigvd.ch.amt.appmvc.services;
 
 import ch.heigvd.ch.amt.appmvc.model.User;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 import javax.ejb.Singleton;
 
 /**
@@ -39,11 +41,11 @@ public class UserManager implements IUserManager{
         return false;
     }
     
-    private static Map<String, User> listOfUsers = new HashMap<String, User>();
+   
 
     @Override
-    public void deleteUser(User user) {
-      listOfUsers.remove(user.getUsername());
+    public User deleteUser(String username) {
+      return listOfUsers.remove(username);
     }
 
     @Override
@@ -61,4 +63,17 @@ public class UserManager implements IUserManager{
         if (user.getFamilyName() != null)
             listOfUsers.get(user.getUsername()).setFamilyName(user.getFamilyName());
     }
+
+    @Override
+    public List<User> findAllUsers() {
+        return new ArrayList<User>(listOfUsers.values());
+    }
+
+    @Override
+    public User findUser(String username) {
+        return listOfUsers.get(username);
+    }
+    
+    
+     private static Map<String, User> listOfUsers = new HashMap<String, User>();
 }

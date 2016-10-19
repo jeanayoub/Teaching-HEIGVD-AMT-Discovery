@@ -2,7 +2,7 @@
  * Document           : RegistrationServlet.java
  * Created on         : Oct 6, 2016
  * Author             : J. Ayoub & M-H. Aghamahdi
- * Information Source : N/A
+ * Information Source : https://www.tutorialspoint.com/javaexamples/regular_email.htm
  */
 
 package ch.heigvd.ch.amt.appmvc.web;
@@ -27,14 +27,21 @@ public class RegistrationServlet extends HttpServlet {
     @EJB
     private IUserManager userManager;
     
-    
     public static final String VIEW_REGISTRATION = "/WEB-INF/pages/Registration.jsp";
-    public static final String VIEW_LOGIN        = "/WEB-INF/pages/Login.jsp";
     public static final String LINK_LOGIN        = "/login";
+    public static final String LINK_PROTECTED    = "/restricted/protected";
+    public static final String EMAIL_REGEX       = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+    public static final String ERR_REQUIRED      = "You must fill all required fields (*) !";
+    public static final String ERR_USERNAME      = "Username exists ! Choose a different one !";
+    public static final String ERR_PASSQORD_CONF = "Password and password confirmation doesn't match !";
+    public static final String ERR_EMAIL         = "Email address syntax is incorrect !";
     public static final String USERNAME          = "username";
     public static final String PASSWORD          = "password";
     public static final String CONFIRMATION      = "confirmation";
-    public static final String LINK_PROTECTED    = "/restricted/protected";
+    public static final String EMAIL             = "email";
+    public static final String FIRST_NAME        = "firstName";
+    public static final String FAMILY_NAME       = "familyName";
+    
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -73,26 +80,50 @@ public class RegistrationServlet extends HttpServlet {
         String username     = request.getParameter(USERNAME);
         String password     = request.getParameter(PASSWORD); 
         String confirmation = request.getParameter(CONFIRMATION);
+        String email        = request.getParameter(EMAIL);
+        String firstName    = request.getParameter(FIRST_NAME);
+        String familyName   = request.getParameter(FAMILY_NAME);
         
         if (username.isEmpty() || password.isEmpty() || confirmation.isEmpty()) {
-            request.setAttribute("err_register", "You must fill all required fields (*) !");
+            request.setAttribute("err_register", ERR_REQUIRED);
             request.getRequestDispatcher(VIEW_REGISTRATION).forward(request, response);
         }
             
         else if (userManager.userExists(username)) {
-            request.setAttribute("err_register", "Username exists ! Choose a different one !");
+            request.setAttribute("err_register", ERR_USERNAME);
             request.getRequestDispatcher(VIEW_REGISTRATION).forward(request, response);
         }
         
         else if (!password.equals(confirmation)) {
-            request.setAttribute("err_register", "Password and password confirmation doesn't match !");
+            request.setAttribute("err_register", ERR_PASSQORD_CONF);
             request.getRequestDispatcher(VIEW_REGISTRATION).forward(request, response);
         }
         
+        else if (email != null && !email.trim().isEmpty() && !email.matches(EMAIL_REGEX)) {
+                request.setAttribute("err_register", ERR_EMAIL);
+                request.getRequestDispatcher(VIEW_REGISTRATION).forward(request, response);   
+        }
+        
         else {
-            userManager.addUser(new User(username, password));
+            
+            User user = new User(username, password);
+            
+            
+            if (email != null) {
+                user.setEmail(email);
+            }
+
+            
+            if (firstName != null) {
+                user.setFirstName(firstName);
+            }
+        
+            if (familyName != null) {
+                user.setFamilyName(familyName);
+            }
+            
+            userManager.addUser(user);
             request.setAttribute("succ_register", " You have successfully registerd !");
-            //request.getRequestDispatcher(VIEW_LOGIN).forward(request, response);
             response.sendRedirect( request.getContextPath() + LINK_LOGIN);
         }
     }
