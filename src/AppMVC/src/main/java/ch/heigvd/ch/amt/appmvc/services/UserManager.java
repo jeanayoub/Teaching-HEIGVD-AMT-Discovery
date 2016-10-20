@@ -8,35 +8,95 @@
 package ch.heigvd.ch.amt.appmvc.services;
 
 import ch.heigvd.ch.amt.appmvc.model.User;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
-import javax.ejb.Singleton;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.Resource;
+import javax.ejb.Stateless;
+import javax.sql.DataSource;
 
 /**
  *
  * @author J. Ayoub & M-H. Aghamahdi
  */
-@Singleton
+@Stateless
 public class UserManager implements IUserManager{
 
-    public UserManager() {}
+    @Resource(lookup = "jdbc/amtDB")
+    private DataSource dataSource;
+    
     
     @Override
     public void addUser(User user) {
-        listOfUsers.put(user.getUsername(), user);
+        
+        try {
+            Connection conn = dataSource.getConnection();
+            PreparedStatement ps = conn.prepareStatement( "INSERT INTO users VALUES(?,?,?,?,?)" );
+            
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getPassword());
+            ps.setString(3, user.getEmail());
+            ps.setString(4, user.getFirstName());
+            ps.setString(5, user.getFamilyName());
+            
+            ps.executeUpdate();
+            conn.close();
+        }
+        catch (SQLException ex){
+            ex.toString();
+            Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @Override
      public boolean userExists(String username) {
-        return listOfUsers.containsKey(username);
+         
+         boolean exists = false;
+       
+          try {
+              Connection conn = dataSource.getConnection();
+              PreparedStatement ps = conn.prepareStatement( "SELECT username FROM users WHERE username = ?");
+              ps.setString(1, username);
+              ResultSet rs = ps.executeQuery();
+              if (rs.next()) {
+                  exists = true;
+              }
+              conn.close();
+        }
+            catch (SQLException ex){
+                ex.toString();
+                Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return exists;
     }
+     
      
     @Override
     public boolean verifyUser(User user) {
         if ( userExists(user.getUsername()) ) {
-            return listOfUsers.get(user.getUsername()).isEqual(user);
+            User userTmp = null;
+            try {
+              Connection conn = dataSource.getConnection();
+              PreparedStatement ps = conn.prepareStatement( "SELECT username, password FROM users WHERE username = ?");
+              ps.setString(1, user.getUsername());
+              ResultSet rs = ps.executeQuery();
+               if(rs.next()) {
+                 userTmp = new User(rs.getString("username"), rs.getString("password"));  
+               }
+                conn.close();
+               return userTmp.isEqual(user);
+            }
+            catch (SQLException ex){
+                ex.toString();
+                Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return false;
     }
@@ -44,34 +104,94 @@ public class UserManager implements IUserManager{
    
 
     @Override
-    public User deleteUser(String username) {
-      return listOfUsers.remove(username);
+    public int deleteUser(String username) {
+        int state = 0;
+        try {
+            Connection conn = dataSource.getConnection();
+            PreparedStatement ps = conn.prepareStatement( "DELETE FROM users WHERE username = ?" );
+            ps.setString(1, username);
+         
+            state = ps.executeUpdate();
+            conn.close();           
+        }
+        catch (SQLException ex){
+            ex.toString();
+            Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        return state;
     }
 
+    
+    
     @Override
     public void modifyUser(User user) {
        
-        if (user.getPassword() != null)
-           listOfUsers.get(user.getUsername()).setPassword(user.getPassword());
-     
-        if (user.getEmail() != null)
-            listOfUsers.get(user.getUsername()).setEmail(user.getEmail());
-        
-        if (user.getFirstName() != null)
-            listOfUsers.get(user.getUsername()).setFirstName(user.getFirstName());
-        
-        if (user.getFamilyName() != null)
-            listOfUsers.get(user.getUsername()).setFamilyName(user.getFamilyName());
+        try {
+            Connection conn = dataSource.getConnection();
+            PreparedStatement ps = conn.prepareStatement( "UPDATE users SET password = ? , email = ? ,  firstName = ? , familyName = ? WHERE username = ?" );            
+            
+            ps.setString(1, user.getPassword()   );
+            ps.setString(2, user.getEmail()      );
+            ps.setString(3, user.getFirstName()  );
+            ps.setString(4, user.getFamilyName() );
+            ps.setString(5, user.getUsername()   );
+            
+            ps.executeUpdate();
+            conn.close();
+        }
+        catch (SQLException ex){
+            ex.toString();
+            Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public List<User> findAllUsers() {
-        return new ArrayList<User>(listOfUsers.values());
+        
+        List<User> users = new ArrayList<>();
+        
+        try {
+              Connection conn = dataSource.getConnection();
+              PreparedStatement ps = conn.prepareStatement( "SELECT * FROM users");
+              ResultSet rs = ps.executeQuery();
+              while (rs.next()) {
+                  users.add(new User(rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getString("firstName"), rs.getString("familyName")));
+              }
+              conn.close();
+        }
+            catch (SQLException ex){
+                ex.toString();
+                Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return users;
     }
 
     @Override
     public User findUser(String username) {
-        return listOfUsers.get(username);
+        
+        User user = null;
+        
+        try {
+              Connection conn = dataSource.getConnection();
+              PreparedStatement ps = conn.prepareStatement( "SELECT * FROM users WHERE username = ?");
+              ps.setString(1, username);
+              ResultSet rs = ps.executeQuery();
+              if (rs.next()) {
+                  user = new User(rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getString("firstName"), rs.getString("familyName"));
+              }
+              conn.close();
+        }
+            catch (SQLException ex){
+                ex.toString();
+                Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return user;
     }
     
     

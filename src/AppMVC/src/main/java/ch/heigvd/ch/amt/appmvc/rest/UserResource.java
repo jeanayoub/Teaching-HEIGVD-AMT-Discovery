@@ -71,7 +71,7 @@ public class UserResource {
       .build();
   }
 
-  @Path("{username}")
+  @Path("/{username}")
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   public UserDTO getUser(@PathParam("username") String username) {
@@ -85,9 +85,9 @@ public class UserResource {
   @DELETE
   @Produces(MediaType.APPLICATION_JSON)
   public Response deleteUser(@PathParam("username") String username) {
-      if (userManager.deleteUser(username) != null) {
+      if (userManager.deleteUser(username) != 0) {
           return Response
-                  .accepted("The user have beem successfully deleted")
+                  .accepted("The user have been successfully deleted")
                   .build();
       }
       else {
@@ -97,6 +97,7 @@ public class UserResource {
       }
   }
   
+  @Path("/{username}")
   @PUT
   @Produces(MediaType.APPLICATION_JSON)
   public Response updateUser(@PathParam("username") String username, UserDTO userDTO) {

@@ -18,7 +18,7 @@ import javax.ejb.Local;
 public interface IUserManager {
     
     void       addUser      (User   user);
-    User       deleteUser   (String   username);
+    int        deleteUser   (String   username);
     void       modifyUser   (User   user);
     boolean    userExists   (String username);
     boolean    verifyUser   (User   user);

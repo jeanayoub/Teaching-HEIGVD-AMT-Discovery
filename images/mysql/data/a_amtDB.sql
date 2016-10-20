@@ -16,8 +16,8 @@ USE amtDB;
 CREATE TABLE users (
 username   VARCHAR(50) NOT NULL,
 password   VARCHAR(50) NOT NULL,
-email      VARCHAR(50),
-firstName  VARCHAR(50), 
-familyName VARCHAR(50), 
+email      VARCHAR(50) DEFAULT NULL,
+firstName  VARCHAR(50) DEFAULT NULL, 
+familyName VARCHAR(50) DEFAULT NULL, 
 PRIMARY KEY (username)
 );
