@@ -1,6 +1,6 @@
 # Teaching-HEIGVD-AMT-2016-Discovery
 
-## Introduction
+## Introduction 
 
 This repo contains artifacts to illustrate the high-level Java EE development cycle:
 
