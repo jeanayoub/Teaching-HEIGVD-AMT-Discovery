@@ -27,7 +27,7 @@
                 <br />
                 <font color="red">${sessionScope.err_logout}</font>
                 <br />
-            <a style = "font-size:x-small" href = "/AppMVC/index.html"> Home Page</a>
+            <a style = "font-size:x-small" href = "../index.html"> Home Page</a>
             </fieldset> 
         </form>        
     </body>
