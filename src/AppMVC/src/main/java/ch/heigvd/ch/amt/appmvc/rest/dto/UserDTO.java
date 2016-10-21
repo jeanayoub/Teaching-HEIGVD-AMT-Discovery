@@ -1,15 +1,13 @@
 /** 
- * Document           : UserManager.java
+ * Document           : UserDTO.java
  * Created on         : Oct 17, 2016
  * Author             : J. Ayoub & M-H. Aghamahdi
+ * Object             : This class represent our DTO. 
+ *                      So this is a class representing users.
  * Information Source : N/A
  */
 package ch.heigvd.ch.amt.appmvc.rest.dto;
 
-/**
- *
- * @author Ayoubo
- */
 public class UserDTO {
     
     private String username;

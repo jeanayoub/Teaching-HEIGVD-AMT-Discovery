@@ -2,6 +2,8 @@
     Document           : Login.jsp
     Created on         : Oct 6, 2016
     Author             : J. Ayoub & M-H. Aghamahdi
+    Object             : This is a login page. Through this page, a user can 
+                         access the protected page, when he put his username and password.
     Information Source : www.openclassrooms.com
 --%>
 
@@ -15,7 +17,8 @@
         <title>Login page</title>
     </head>
     
-        <form method="post" action="login"> <fieldset>
+        <form method="post" action="login"> 
+            <fieldset>
                 <legend>Login</legend>
                 <font color="green"> <strong> ${requestScope.succ_register} </strong> </font>
                 <p>You need to connect in order to access the protected page.</p>
@@ -45,4 +48,5 @@
                 <a style = "font-size:x-small" href = "index.html"> Home Page</a>
                 <br />
                 <a style = "font-size:x-small" href = "register"> Not registered yet ?</a>
-                </fieldset> </form>
+            </fieldset> 
+        </form>

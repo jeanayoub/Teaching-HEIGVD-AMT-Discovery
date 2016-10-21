@@ -2,6 +2,9 @@
     Document           : ProtectedPage.jsp
     Created on         : Oct 6, 2016
     Author             : J. Ayoub & M-H. Aghamahdi
+    Object             : It's a protected page.only authorized users can enter this page. 
+                         In other-words, if a user has already made registration and 
+                         he enters a correct username and correct password, can access this page.
     Information Source : www.openclassrooms.com
 --%>
 
@@ -17,16 +20,16 @@
         <strong> Protected Page!</strong>
         <br />
         <font color="yellow">Welcome ${sessionScope.username} !</font>
-        <form method="post" action="protected"> <fieldset>
+        <form method="post" action="protected"> 
+            <fieldset>
                 <br />
                 <input type="submit" value="Logout" class="sansLabel" />
                 <br />
                 <font color="red">${sessionScope.err_logout}</font>
                 <br />
             <a style = "font-size:x-small" href = "/AppMVC/index.html"> Home Page</a>
-            </fieldset> </form>
-        
-        
+            </fieldset> 
+        </form>        
     </body>
 </html>
 

@@ -2,6 +2,7 @@
  * Document           : LoginServlet.java
  * Created on         : Oct 6, 2016
  * Author             : J. Ayoub & M-H. Aghamahdi
+ * Object             : This Servlet manage the login page. 
  * Information Source : N/A
  */
 
@@ -17,10 +18,6 @@ import ch.heigvd.ch.amt.appmvc.model.User;
 import javax.ejb.EJB;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author J. Ayoub & M-H. Aghamahdi
- */
 public class LoginServlet extends HttpServlet {
 
     @EJB
@@ -35,8 +32,7 @@ public class LoginServlet extends HttpServlet {
     public static final  String FAMILY_NAME    = "familyName";
 
     /**
-     * Handles the HTTP <code>GET</code> method.
-     *
+     * treatment of "get" on the login page
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -50,7 +46,6 @@ public class LoginServlet extends HttpServlet {
         
         if(sessionTest.getAttribute("username") != null) {
             response.sendRedirect( request.getContextPath() + LINK_PROTECTED);
-            //request.getRequestDispatcher(VIEW_PROTECTED).forward(request, response);
         }
         else {
             request.getRequestDispatcher(VIEW_LOGIN).include(request, response);
@@ -58,8 +53,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
-     *
+     * treatment of "POST" on the login page
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs

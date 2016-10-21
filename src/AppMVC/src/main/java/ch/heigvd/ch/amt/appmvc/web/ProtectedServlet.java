@@ -2,6 +2,7 @@
  * Document           : ProtectedServlet.java
  * Created on         : Oct 6, 2016
  * Author             : J. Ayoub & M-H. Aghamahdi
+ * Object             : This Servlet manage the protected page. 
  * Information Source : N/A
  */
 package ch.heigvd.ch.amt.appmvc.web;
@@ -12,18 +13,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author J. Ayoub & M-H. Aghamahdi
- */
+
 public class ProtectedServlet extends HttpServlet {
     
     private static final String LINK_LOGOUT    = "/logout";
     private static final String VIEW_PROTECTED = "/WEB-INF/pages/Restricted/ProtectedPage.jsp";
     
     /**
-     * Handles the HTTP <code>GET</code> method.
-     *
+     * treatment of "get" on the Protected page
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -37,8 +34,7 @@ public class ProtectedServlet extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
-     *
+     * treatment of "POST" on the login page
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs

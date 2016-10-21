@@ -2,6 +2,8 @@
     Document           : Registration.jsp
     Created on         : Oct 6, 2016
     Author             : J. Ayoub & M-H. Aghamahdi
+    Object             : Through this page, a user can perform registration. 
+                          only the fields "username" and "password" are required.
     Information Source : www.openclassrooms.com
 --%>
 

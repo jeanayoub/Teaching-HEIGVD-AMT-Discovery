@@ -2,6 +2,7 @@
  * Document           : UserManager.java
  * Created on         : Oct 6, 2016
  * Author             : J. Ayoub & M-H. Aghamahdi
+ * Object             : This class provides methods to manage user
  * Information Source : N/A
  */
 
@@ -22,17 +23,16 @@ import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.sql.DataSource;
 
-/**
- *
- * @author J. Ayoub & M-H. Aghamahdi
- */
 @Stateless
 public class UserManager implements IUserManager{
 
     @Resource(lookup = "jdbc/amtDB")
     private DataSource dataSource;
     
-    
+    /**
+     * This method add a user in DB.
+     * @param user user to add
+     */
     @Override
     public void addUser(User user) {
         
@@ -55,6 +55,11 @@ public class UserManager implements IUserManager{
         }
     }
     
+    /**
+     * This method checks if the user has already made registration.
+     * @param username username to verify
+     * @return true if user has already made registration , false if not.
+     */
     @Override
      public boolean userExists(String username) {
          
@@ -62,9 +67,13 @@ public class UserManager implements IUserManager{
        
           try {
               Connection conn = dataSource.getConnection();
+              
+              // find the user to verfy
               PreparedStatement ps = conn.prepareStatement( "SELECT username FROM users WHERE username = ?");
               ps.setString(1, username);
               ResultSet rs = ps.executeQuery();
+              
+              // if rs.next() is not null, it means the user exists.
               if (rs.next()) {
                   exists = true;
               }
@@ -78,6 +87,11 @@ public class UserManager implements IUserManager{
     }
      
      
+    /**
+     * This method checks if the user has correctly enter his username and password
+     * @param user user who fill in his fields
+     * @return true if user and password does match, false if not.
+     */
     @Override
     public boolean verifyUser(User user) {
         if ( userExists(user.getUsername()) ) {
@@ -102,7 +116,11 @@ public class UserManager implements IUserManager{
     }
     
    
-
+    /**
+     * this method deletes the user
+     * @param username username to delete
+     * @return status of delete operation
+     */
     @Override
     public int deleteUser(String username) {
         int state = 0;
@@ -111,6 +129,7 @@ public class UserManager implements IUserManager{
             PreparedStatement ps = conn.prepareStatement( "DELETE FROM users WHERE username = ?" );
             ps.setString(1, username);
          
+            // we save the result of delete operation.
             state = ps.executeUpdate();
             conn.close();           
         }
@@ -119,13 +138,14 @@ public class UserManager implements IUserManager{
             Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
-        
         return state;
     }
 
     
-    
+    /**
+     * This method update the users's informations
+     * @param user user to update
+     */
     @Override
     public void modifyUser(User user) {
        
@@ -148,6 +168,10 @@ public class UserManager implements IUserManager{
         }
     }
 
+    /**
+     * This method find all user and save them in the list.
+     * @return list of users.
+     */
     @Override
     public List<User> findAllUsers() {
         
@@ -155,8 +179,12 @@ public class UserManager implements IUserManager{
         
         try {
               Connection conn = dataSource.getConnection();
+              
+              // save all users in DB.
               PreparedStatement ps = conn.prepareStatement( "SELECT * FROM users");
               ResultSet rs = ps.executeQuery();
+              
+              // add all users in the list.
               while (rs.next()) {
                   users.add(new User(rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getString("firstName"), rs.getString("familyName")));
               }
@@ -170,6 +198,11 @@ public class UserManager implements IUserManager{
         return users;
     }
 
+    /**
+     * Find a specified user
+     * @param username username to find
+     * @return user as a User form
+     */
     @Override
     public User findUser(String username) {
         
@@ -194,6 +227,4 @@ public class UserManager implements IUserManager{
         return user;
     }
     
-    
-     private static Map<String, User> listOfUsers = new HashMap<String, User>();
 }

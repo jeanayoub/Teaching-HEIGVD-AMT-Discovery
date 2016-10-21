@@ -1,7 +1,9 @@
 /** 
- * Document           : UserManager.java
+ * Document           : RestConfig.java
  * Created on         : Oct 17, 2016
  * Author             : J. Ayoub & M-H. Aghamahdi
+ * Object             : This class allows to configure the "REST". 
+ *                      It informs to the database that the data is as json.
  * Information Source : N/A
  */
  package ch.heigvd.ch.amt.appmvc.rest;
@@ -11,11 +13,7 @@
  import javax.ws.rs.ApplicationPath;
  import javax.ws.rs.core.Application;
 
- 
-/**
- *
- * @author Ayoubo
- */
+
 @ApplicationPath("/api")
 public class RestConfig extends Application {
     

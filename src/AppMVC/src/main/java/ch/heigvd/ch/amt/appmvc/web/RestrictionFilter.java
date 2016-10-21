@@ -2,6 +2,8 @@
  * Document           : RestrictionFilter.java
  * Created on         : Oct 10, 2016
  * Author             : J. Ayoub & M-H. Aghamahdi
+ * Object             : This Servlet manage the Restriction page. this class manage
+ *                      authetification.
  * Information Source : N/A
  */
 package ch.heigvd.ch.amt.appmvc.web;
@@ -17,10 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author J. Ayoub & M-H. Aghamahdi
- */
 public class RestrictionFilter implements Filter {
     
     public static final String LINK_LOGIN = "/login";
@@ -30,9 +28,9 @@ public class RestrictionFilter implements Filter {
 
     /**
      *
-     * @param request The servlet request we are processing
-     * @param response The servlet response we are creating
-     * @param chain The filter chain we are processing
+     * @param request The servlet request 
+     * @param response The servlet response 
+     * @param chain The filter chain 
      *
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet error occurs
@@ -66,8 +64,5 @@ public class RestrictionFilter implements Filter {
      */
     public void init(FilterConfig filterConfig) {        
        
-    }
-    
-    
-    
+    }   
 }

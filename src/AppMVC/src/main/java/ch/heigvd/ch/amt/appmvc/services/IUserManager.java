@@ -1,7 +1,8 @@
 /** 
- * Document           : UserManager.java
+ * Document           : IUserManager.java
  * Created on         : Oct 16, 2016
  * Author             : J. Ayoub & M-H. Aghamahdi
+ * Object             : Interface that defined the mandatory methods to manage user
  * Information Source : N/A
  */
 package ch.heigvd.ch.amt.appmvc.services;
@@ -10,10 +11,6 @@ import ch.heigvd.ch.amt.appmvc.model.User;
 import java.util.List;
 import javax.ejb.Local;
 
-/**
- *
- * @author J. Ayoub & M-H. Aghamahdi
- */
 @Local
 public interface IUserManager {
     

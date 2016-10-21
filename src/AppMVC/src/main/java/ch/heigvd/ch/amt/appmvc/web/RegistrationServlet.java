@@ -2,6 +2,7 @@
  * Document           : RegistrationServlet.java
  * Created on         : Oct 6, 2016
  * Author             : J. Ayoub & M-H. Aghamahdi
+ * Object             : This Servlet manage the Registration page. 
  * Information Source : https://www.tutorialspoint.com/javaexamples/regular_email.htm
  */
 
@@ -18,10 +19,6 @@ import ch.heigvd.ch.amt.appmvc.model.User;
 import javax.ejb.EJB;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author J. Ayoub & M-H. Aghamahdi
- */
 public class RegistrationServlet extends HttpServlet {
 
     @EJB
@@ -44,7 +41,7 @@ public class RegistrationServlet extends HttpServlet {
     
 
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * treatment of "get" on the Registration page
      *
      * @param request servlet request
      * @param response servlet response
@@ -59,14 +56,14 @@ public class RegistrationServlet extends HttpServlet {
         
         if(sessionTest.getAttribute("username") != null) {
             response.sendRedirect( request.getContextPath() + LINK_PROTECTED);
-                }
+        }
         else {
-        request.getRequestDispatcher(VIEW_REGISTRATION).include(request, response);
+            request.getRequestDispatcher(VIEW_REGISTRATION).include(request, response);
         }
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * treatment of "post" on the Registration page
      *
      * @param request servlet request
      * @param response servlet response
@@ -84,6 +81,7 @@ public class RegistrationServlet extends HttpServlet {
         String firstName    = request.getParameter(FIRST_NAME);
         String familyName   = request.getParameter(FAMILY_NAME);
         
+        // treatment of various errors
         if (username.isEmpty() || password.isEmpty() || confirmation.isEmpty()) {
             request.setAttribute("err_register", ERR_REQUIRED);
             request.getRequestDispatcher(VIEW_REGISTRATION).forward(request, response);
