@@ -2,6 +2,7 @@
  * Document           : LoginServlet.java
  * Created on         : Oct 6, 2016
  * Author             : J. Ayoub & M-H. Aghamahdi
+ * Object             : A Servlet to manage the login page. 
  * Information Source : N/A
  */
 
@@ -18,7 +19,7 @@ import javax.ejb.EJB;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * 
  * @author J. Ayoub & M-H. Aghamahdi
  */
 public class LoginServlet extends HttpServlet {
@@ -35,10 +36,11 @@ public class LoginServlet extends HttpServlet {
     public static final  String FAMILY_NAME    = "familyName";
 
     /**
-     * Handles the HTTP <code>GET</code> method.
-     *
+     * Treatment of "get" on the login page.
+     * 
      * @param request servlet request
      * @param response servlet response
+     * 
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
@@ -50,7 +52,6 @@ public class LoginServlet extends HttpServlet {
         
         if(sessionTest.getAttribute("username") != null) {
             response.sendRedirect( request.getContextPath() + LINK_PROTECTED);
-            //request.getRequestDispatcher(VIEW_PROTECTED).forward(request, response);
         }
         else {
             request.getRequestDispatcher(VIEW_LOGIN).include(request, response);
@@ -58,10 +59,11 @@ public class LoginServlet extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
-     *
+     * Treatment of "POST" on the login page.
+     * 
      * @param request servlet request
      * @param response servlet response
+     * 
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
@@ -74,8 +76,7 @@ public class LoginServlet extends HttpServlet {
         String email      = request.getParameter(EMAIL);
         String firstName  = request.getParameter(FIRST_NAME);
         String familyName = request.getParameter(FAMILY_NAME);
-        
-        
+         
         if (userManager.verifyUser(new User(username, password))) {
                 HttpSession session = request.getSession(true);
             
@@ -86,8 +87,8 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect( request.getContextPath() + LINK_PROTECTED);
         } 
         else {  
-                request.setAttribute("err_login", "Invalid username or/and password !");  
-                request.getRequestDispatcher(VIEW_LOGIN).include(request, response);
+            request.setAttribute("err_login", "Invalid username or/and password !");      
+            request.getRequestDispatcher(VIEW_LOGIN).include(request, response);
         }
     }
 }
