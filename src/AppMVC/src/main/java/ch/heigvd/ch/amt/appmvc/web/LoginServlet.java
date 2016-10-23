@@ -77,6 +77,7 @@ public class LoginServlet extends HttpServlet {
         String firstName  = request.getParameter(FIRST_NAME);
         String familyName = request.getParameter(FAMILY_NAME);
          
+
         if (userManager.verifyUser(new User(username, password))) {
                 HttpSession session = request.getSession(true);
             

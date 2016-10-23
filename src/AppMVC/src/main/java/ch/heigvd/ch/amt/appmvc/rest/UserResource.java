@@ -41,6 +41,7 @@ public class UserResource {
   @EJB
   private IUserManager userManager; // Injection
 
+
   @Context
   UriInfo uriInfo;
 
@@ -131,7 +132,7 @@ public class UserResource {
    * @param userDTO info to be replaced in username
    * @return response of request http to notify the user.
    */
-  @Path("/{username}")
+  @Path("{username}")
   @PUT
   @Produces(MediaType.APPLICATION_JSON)
   public Response updateUser(@PathParam("username") String username, 

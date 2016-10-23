@@ -7,7 +7,7 @@
 		"ff8651ce-7149-c215-f9dd-07b3f2000622",
 		"27eb954f-08b8-c6fe-6efc-20bb45b3b098",
 		"d18c1604-696c-0b85-ae06-6daa6fa5ba95",
-		"8c3892b7-ff1a-1d01-bf32-39ea96667157"
+		"f7577c54-76a0-138f-10db-2b4096f1b50c"
 	],
 	"folders": [],
 	"timestamp": 1476824005440,
@@ -56,27 +56,6 @@
 			"rawModeData": "{\n  \"username\": \"new.user\",\n  \"password\": \"newuser\",\n  \"email\": \"new.user@amt.ch\",\n  \"firstName\": \"New\",\n  \"familyName\": \"User\"\n}"
 		},
 		{
-			"id": "8c3892b7-ff1a-1d01-bf32-39ea96667157",
-			"headers": "",
-			"url": "{{IP}}:8080/appwar/api/users/kawaski.ninja",
-			"pathVariables": {},
-			"preRequestScript": null,
-			"method": "DELETE",
-			"collectionId": "2cadcc04-a53f-04c0-a092-d31ad0974865",
-			"data": [],
-			"dataMode": "raw",
-			"name": "Delete Existing user",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1477233707546,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"rawModeData": ""
-		},
-		{
 			"id": "d18c1604-696c-0b85-ae06-6daa6fa5ba95",
 			"headers": "",
 			"url": "{{IP}}:8080/appwar/api/users/hossein.aghamahdi",
@@ -96,6 +75,27 @@
 			"currentHelper": "normal",
 			"helperAttributes": {},
 			"rawModeData": "{\n  \"username\": \"hossein.aghamahdi\",\n  \"password\": \"newpassword\"\n}"
+		},
+		{
+			"id": "f7577c54-76a0-138f-10db-2b4096f1b50c",
+			"headers": "",
+			"url": "{{IP}}:8080/appwar/api/users/kawasaki.ninja",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "DELETE",
+			"collectionId": "2cadcc04-a53f-04c0-a092-d31ad0974865",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Delete Existing user",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1477245480391,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
 		},
 		{
 			"id": "ff8651ce-7149-c215-f9dd-07b3f2000622",

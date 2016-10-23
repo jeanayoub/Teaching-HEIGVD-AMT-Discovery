@@ -59,6 +59,7 @@ public class User {
         return username;
     }
 
+
     /**
      * 
      * @return password 
@@ -67,6 +68,7 @@ public class User {
         return password;
     }
 
+    
     /**
      * 
      * @return email address 
@@ -100,7 +102,7 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    
     /**
      * Sets the email address.
      * 

@@ -72,6 +72,7 @@
             <input type="submit" 
                    value="submit" 
                    styleClass="sansLabel" />
+
             &nbsp; 
             &nbsp;
             <font color="red"> <strong> ${requestScope.err_register} <strong> </font>
